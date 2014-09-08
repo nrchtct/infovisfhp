@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="favicon.png" />
+<script type="text/javascript" src="src/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="src/prefixfree.min.js"></script>
+<style type="text/css" media="screen">
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Light'), local('Lato-Light'), url('src/lato300.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Normal'), local('Lato-Normal'), url('src/lato400.woff') format('woff');
+}
+
+
+body {
+	background: #F5F5F5;
+	padding: 0;
+	margin: 0;
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 1.5em;
+}
+
+#content {
+	max-width: 1400px;	
+	margin: auto;	
+}
+
+strong {
+	font-weight: 400;
+	color: #444;
+}
+
+a {
+	color: #125DA6;
+	font-weight: 400;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ul, ol { margin: 0; padding: 0; margin-bottom: 20px;}
+ul li { list-style-type: none; margin-bottom: 15px;}
+ol li { list-style-type: none; margin-bottom: 5px;}
+
+em {
+	font-size: 14px;
+	font-style: normal;
+	color: #999;
+	font-weight: 400;
+}
+
+li.less {
+	padding: 4px 8px;
+	margin: -4px -8px;
+	margin-bottom: 10px;
+	border-radius: .5em;
+	cursor: pointer;
+}
+
+li.less:hover {
+	background-color: #FBFBFB;		
+}
+
+li.less span {
+	font-size: 0.9em;
+	color: #555;
+	width: 100%;	
+	margin: 0;
+	padding: 15px 0 5px 0;
+	display: block;
+}
+
+li.less.more {
+	background: #fff;
+}
+
+li.less.more:hover {
+	background: #fff;
+}
+
+
+
+h1, h1 em {
+	white-space: nowrap;
+	margin: 0;
+	text-align: center;
+	font-weight: 300;	
+	font-size: 36px;
+	line-height: 30px;
+}
+
+h1 {
+	height: 200px;
+	background: #fff;
+}
+
+h1 em {
+	color: #aaa;
+	display: inline-block;
+	-webkit-transform: translateY(3px);
+	-o-transform: translateY(3px);
+	-moz-transform: translateY(3px);
+	transform: translateY(3px);
+}
+
+
+h1 img { width: 80px; height: 80px; padding-right: 7px; margin-top: 20px;}
+h1 span {
+	font-weight: 400;
+	font-size: 16px;
+	color: #999;	
+}
+
+h1 a {	font-weight: 400; }
+
+h2 {
+	margin-top: 1.75em;
+	font-weight: 400;
+	font-size: 18px;
+	clear: both;
+}
+	
+h3 {
+	font-weight: 400;
+	color: #999;
+	font-size: 14px;	
+	margin: 0 0 10px;
+}
+
+h3.past {
+	color: #467561;
+}
+
+#left, #middle, #right {
+	xbackground: rgba(0,0,0,.25);
+}
+
+#left { 	width: 25%; padding: 1% 3%; float: left;  }	
+#middle { width: 38%; padding: 1% 0%; float: left;  }	
+#right { 	width: 25%; padding: 1% 3%; float: right; }	
+
+@media all and (max-width: 500px) {
+	body {font-size: 13px;}
+	h1 span {font-size: 12px;}
+	h1 {font-size: 28px;}		
+	h2 {font-size: 12px;}
+	h3, em {font-size: 11px;}
+	#left { 	width: 92%; padding: 4%; float: none;}	
+	#middle { width: 92%; padding: 4%; float: none;}	
+	#right { 	width: 92%; padding: 4%; float: none;}		
+}
+
+@media all and (min-width: 500px) and (max-width: 800px) {
+	#left { 	width: 44%; padding: 3%; float: left;}	
+	#right { 	width: 44%; padding: 3%; float: right;}		
+	#middle { width: 94%; padding: 3%; float: right;}	
+	
+	body {font-size: 14px;}
+	h1 span {font-size: 13px;}	
+	h1 {font-size: 30px;}		
+	h2 {font-size: 16px;}
+	h3, em {font-size: 11px;}
+}
+
+@media all and (min-width: 800px) and (max-width: 1200px) {
+	body, h1 span {font-size: 14px;}
+	h1 {font-size: 34px;}	
+	h2 {font-size: 17px;}
+	h3, em {font-size: 12px;}
+}
+
+@media all and (min-width: 1200px) {
+	body, h1 span {font-size: 15px;}
+	h1 {font-size: 36px;}
+	h2 {font-size: 19px;}
+	h3, em {font-size: 13px;}
+}
+
+
+/* PROJECTS */
+
+#projects img { border: 1px solid #548DC0; width: 100%;}
+
+#projects a span { line-height: 1em; }
+
+#projects img {
+		border: 1px solid #777;
+		opacity: .9;
+		
+		filter: grayscale(100%);
+				-webkit-filter: grayscale(100%);
+				-moz-filter: grayscale(100%);
+				-ms-filter: grayscale(100%); 
+				-o-filter: grayscale(100%);
+		filter:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);		
+				filter: gray
+		
+}
+
+#projects a:hover img {
+	border: 1px solid #548DC0;
+			opacity: 1;
+	filter: 				none;
+	-webkit-filter: none;
+	-moz-filter: 		none;
+	-ms-filter: 		none;
+	-o-filter: 			none;
+	
+}
+
+
+#xprojects img:hover { border: 1px solid #1054A0; }
+#xprojects a:hover span { background-color: #1054A0; }
+
+
+/* PEOPLE */
+
+div.people { min-width: 125px; width: 48%; margin-right: 2%; float: left; white-space: nowrap; margin: 0; padding: 0;}
+
+/* FOOTER */
+
+footer {
+	clear: both;
+	display: block;
+	width: 100%;
+	background-color: #ddd;	
+}
+
+footer .left {
+	
+}
+
+#teaser{
+	background:#ffffff;
+	padding-bottom:40px;
+	display: none;
+}
+
+#teaser h2{
+	background:#ffffff;
+	margin-top:0;
+	text-align: center;
+	padding-top:20px;
+}
+
+#img_talk{
+	background-image: url("imgs/BildVortrag6.png");
+	background-repeat: no-repeat;
+	margin: 0 auto 30px auto;
+	width: 780px;
+}
+
+.date{
+	font-family: "Lato", "Arial";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 16px;
+	margin: 0px;
+}
+
+.img_headline{
+	-webkit-transform: rotate(-4.5deg);
+	-moz-transform: rotate(-4.5deg);
+	line-height: 1.42857143;
+	position: relative;
+	left: 230px;
+	top: 120px;
+	font-family: "Lato" , "Arial";
+	font-weight: 700;
+	color: #ffffff;
+	margin: 0px;
+	padding: 0px;
+	width: 550px;
+}
+
+.title{
+	font-style: normal;
+	font-size: 34px;
+	/* letter-spacing: 0.04em; */
+	margin: 5px;
+	margin-left: -1px;
+}
+
+.sub{
+	font-weight: 500;
+	font-style: normal;
+	font-size: 20px;
+	line-height: 24px;
+	letter-spacing: 0.04em;
+}
+
+.sub a {
+	color: white;
+}
+
+.col-xs-10 p {
+	padding: 25px;
+	padding-bottom: 10px;
+}
+
+.description{
+	font-family: "Lato", "Arial";
+font-weight: 700;
+font-style: normal;
+font-size: 20px;
+line-height: 30px;
+color: #ffffff;
+margin-top: 545px;
+padding: 20px 20px 10px 40px;
+}
+
+.location-info a{
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.location-info{
+	font-family: "Lato", "Arial";
+	font-weight: 100;
+	font-size: 18px;
+	line-height: 24px;
+	color: #ffffff;
+	text-decoration: none;
+	padding-top: 10px;
+	display: block;
+}
+	
+</style>
+
+<script type="text/javascript">
+	
+$(document).ready(function(){
+
+	$(".less span").css({display: 'none'});
+
+	$("#pastlectures").css({display: 'none'});
+
+	$("li.less a").click( function() {
+    if (!e) var e = window.event;
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();				
+	});
+		
+	$("li.less").click(function(e){
+
+		var shown = $(this).hasClass("more");
+		
+		$(".more span").slideUp(500);
+		$(".more").removeClass("more");
+		
+		if (shown==false) {
+			$(this).addClass("more");
+			$(this).find("span").slideDown(500);			
+		}
+		
+	})
+	
+	
+});
+	
+
+</script>
+<title>information+visualization - Fachhochschule Potsdam</title>
+</head>
+<body>
+
+<h1>
+<img src="src/logo.svg" alt="">
+<br>information<em>+</em>visualization<br>
+<span><a href="http://www.fh-potsdam.de/">Fachhochschule Potsdam</a> University of Applied Sciences</span></h1>
+
+<div id="teaser">
+	<h2 class="lead">Invited talk &nbsp;&nbsp;</h2>
+	<div class="container">
+		<div id="img_talk" class="row">
+		  <div class="img_headline">
+		    <p class="date">
+		      3 September 2014, 7 pm
+		    </p>
+		    <p class="title">
+		      Animation in Visualization
+		    </p>
+		    <p class="sub">
+						 <a href="http://fannychevalier.net/">Fanny Chevalier</a>,<br>INRIA Lille</span> 
+		    <p>
+		    </p>
+		  </div>
+		  <div class="row description">
+		    <div class="col-xs-1">
+		    </div>
+		    <div class="col-xs-10">
+		      <p>
+				Smooth animated transitions, where a graphic display changes continuously in time, are more appealing than still images, feel more realistic, and improve the aesthetics of interfaces. Beyond their compelling nature, animations are powerful tools that can aid better understand the time-varying behaviour of an interface by fluidly transitioning between visual states. We will discuss new uses and challenges in the design of animation for visualization.
+				<br /><br />
+		    <span class="location-info">Doors 6:30pm, Start: 7pm @ <a href="http://www.wis-potsdam.de/de/wis-wissenschaftsetage-im-bildungsforum">Wissenschaftsetage im Bildungsforum</a><br>Am Kanal 47, 14467 Potsdam</span>
+		      </p>
+		    </div>
+		    <div class="col-xs-1">
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div id="content">
+
+<div id="left">
+
+<h2>About</h2>
+
+<p>
+information+visualization is a cross-cutting research theme at the Potsdam University of Applied Sciences. Researchers that focus on information+visualization explore the potential of interactive and visual representations to help people make sense of large data sets and navigate complex information spaces.
+</p>
+
+
+<h2>People</h2>
+
+<div class="people">
+<h3>Professors</h3>
+
+<ol>
+<li><a href="http://mariandoerk.de/">Marian Dörk</a>
+<li><a href="http://www.fh-potsdam.de/studieren/design/personen/detail/person-action/frank-heidmann/show/Person/">Frank Heidmann</a>
+<li><a href="http://www.fh-potsdam.de/person/person-action/constanze-langer/">Constanze Langer</a>
+<li><a href="http://www.esono.com/">Boris Müller</a>
+<li><a href="http://www.fh-potsdam.de/studieren/design/personen/detail/person-action/reto-wettach/show/Person/">Reto Wettach</a>
+</ol>
+</div>
+
+<div class="people">
+
+<h3>Researchers</h3>
+<ol>
+<li><a href="http://kimalbrecht.com/">Kim Albrecht</a>
+<li><a href="http://hannes.emotisys.de/">Johannes Landstorfer</a>
+<li><a href="http://www.fh-potsdam.de/studieren/design/personen/detail/person-action/sebastian-meier/show/Person/">Sebastian Meier</a>
+<li><a href="http://tillnagel.com/">Till Nagel</a> 
+<li><a href="http://idl.fh-potsdam.de/people/jan-erik-stange/">Jan-Erik Stange</a> 
+<li><a href="http://idl.fh-potsdam.de/people/andreas-thom/">Andreas Thom</a>
+</ol>
+
+</div>
+
+
+<!-- <h2>Jobs</h2>
+
+<ul>
+
+<li>
+	<a href="research_associates_60-2014.pdf">Two research associates</a> for 3-year research project on visualizing cultural collections.
+
+<li>
+	<a href="research_associate_75-2014.pdf">Research associate</a> for a 3-year term working in newly founded Institute for Urban Futures.
+
+<li><em>Applications due 25 August 2014</em>
+
+</ul> -->
+
+
+<h2>Activities</h2>
+
+<ul>
+
+<li class="less"><em>6 Aug 2014 – Invited talk</em><br>
+<strong>Generous Interfaces: Visualising Cultural Collections</strong>,
+<a href="http://mtchl.net/">Mitchell Whitelaw</a>, University of Canberra.
+<span>
+	<img src="talks/whitelaw.jpg" alt="whitelaw talk image" style="width: 100%;">
+	Museums, galleries, libraries and archives around the world are rapidly digitising their collections, turning cultural heritage into mountains of data. To realise the value of this material we need new forms of representation, beyond the limits of the search box. This talk presents our experiments in “generous interfaces”: rich, navigable overviews and exploratory browsers for large cultural collections.
+<br><br>
+Doors 6:30pm, Begin 7pm. Wissenschaftsetage im Bildungsforum, Am Kanal 47, 14467 Potsdam.
+</span>
+
+<li class="less"><em>3 Sep 2014 – Invited talk</em><br>
+<strong>Animations in Visualization</strong>,
+<a href="http://fannychevalier.net/">Fanny Chevalier</a>, INRIA.
+<span>
+<img src="talks/chevalier.gif" alt="chevalier talk img" style="width: 185px; float: left; padding: 10px 10px 0 0;">
+	Smooth animated transitions, where a graphic display changes continuously in time, are more appealing than still images, feel more realistic, and improve the aesthetics of interfaces. Beyond their compelling nature, animations are powerful tools that can aid better understand the time-varying behaviour of an interfaces by fluidly transitioning between visual states. We will discuss new uses and challenges in the design of animation for visualization.
+<br><br>
+	Doors 6:30pm, Begin 7pm. Wissenschaftsetage im Bildungsforum, Am Kanal 47, 14467 Potsdam.
+</span>
+
+<li><em>11-12 Sep 2014</em><br>
+<a href="http://searchisover.org/">The Search is Over! Exploring Cultural Collections with Visualization</a>, DL2014 workshop in London.
+</li>
+
+
+</ul>
+
+</div>
+
+
+
+<!-- <h3><a href="https://vimeo.com/album/2939835">Recordings of past lectures</a></h3> -->
+
+<!-- <ul id="pastlectures">
+<li>2 April 2014 <a href="#">Schlauer werden aus Daten</a><br>
+	Julia Kloiber, OKFN & Michael Hörz
+<li> 7 May 2014
+<a href="#">Ambiguous Interfaces</a><br>
+Tom Schofield,
+Newcastle University, UK
+<li>4 June 2014
+<a href="#">Visualising the Anthropocene</a><br>
+Owen Gaffney, International
+Geosphere-Biosphere Programme
+<li>2 July 2014
+<a href="#">Politik der (un)sichtbaren Stadt</a><br>
+Anne-Katrin Fenk, MOD Institute<br>
+Gesa Königstein, TU Berlin
+</ul> -->
+
+
+<!-- <h2>Courses</h2>
+
+<h3>Winter 2014/2015</h3>
+<ol>
+<li>Urban data visualizations
+<li>Visualisierung kultureller Sammlungen
+<li>Communicating science with visualization
+</ol>
+
+<h3>Summer 2014</h3>
+<ol>
+<li>Emotionen sichtbar machen
+<li>Google Maps and beyond: Karten für Desktop, Mobile und Print
+<li>InfoVis reading group
+</ol>
+
+<h3>Winter 2013/2014</h3>
+<ol>
+<li>Visuelle Informationsexploration
+<li>Urbane Ebenen: Mobilität
+<li>New ways for visual pattern recognition
+</ol> -->
+
+
+
+
+<div id="right">
+
+
+<h2>Projects</h2>
+
+<ul id="projects">
+<li><a href="http://isoscope.martinvonlupin.de/"><img alt="isoscope" src="projects/isoscope.jpg"><span>Isoscope</span></a>
+<li><a href="http://culturegraphy.com/"><img alt="culturegraphy" src="projects/culturegraphy.jpg"><span>Culturegraphy</span></a>
+<li><a href="http://idl.fh-potsdam.de/projects/saser/"><img alt="saser" src="projects/saser.jpg"><span>SaSER</span></a>
+<li><a href="http://unfoldingmaps.org/"><img alt="unfoldingmaps" src="projects/unfolding.jpg"><span>Unfolding Maps</span></a>
+<li><a href="http://wordwanderer.org/"><img alt="wordwanderer" src="projects/wordwanderer.jpg"><span>WordWanderer</span></a>
+<li><a href="http://mariandoerk.de/monadicexploration/"><img alt="monadicexploration" src="projects/monadicexploration.jpg"><span>Monadic Exploration</span></a>
+</ul>
+
+</div>
+
+
+
+<div id="middle">
+
+<h2>Publications</h2>
+
+<h3>2014</h3>
+
+<ul>
+	
+<li class="less">
+<strong>Weaving a Carpet from Log Entries: a Network Security Visualization Built with Co-Creation</strong><br>
+J Landstorfer, I Herrmann, JE Stange, M Dörk, R Wettach. VAST 2014.
+<em>To appear.</em>
+
+<span>Proceedings of IEEE Symposium On Visual Analytics Science And Technology, Nov 2014.
+<br><br>
+We created a pixel map for multi-variate data based on an analysis of the needs of network security engineers. Parameters of a log record are shown as pixels and these pixels get stacked to represent a record. This allows a broad view of a data set on one screen while staying very close to the raw data and to expose common and rare patterns of user behavior through the visualization itself (the “Carpet”). Visualizations that immediately point to areas of suspicious activity without requiring extensive fltering, help network engineers investigating unknown computer security incidents. Most of them, however, have limited knowledge of advanced visualization techniques, while many designers and data scientists are unfamiliar with computer security topics. To bridge this gap, we developed visualizations together with engineers, following a co-creative process. We will show how we explored the scope of the engineers' tasks and how we jointly developed ideas and designs. Our expert evaluation indicates that this visualization helps to scan large parts of log fles quickly and to defne areas of interest for closer inspection.
+</span>	
+
+
+<li class="less">
+<strong>Isoscope - Visualizing temporal mobility variance with isochrone maps</strong><br>
+F Gortana, S Kaim, M von Lupin, T Nagel. Poster at VIS 2014. 
+<em>To appear.</em>
+
+<span>Poster Abstracts of IEEE VIS 2014.	
+<br><br>	
+Isochrone maps are an established method to depict areas of equal travel time, and have been used in transportation planning since the early 20th century. In recent years, interactive isochrone maps allowed users to select areas of interest, or explore temporal mobility patterns for different modes of transport. However, conventional isochrone maps depict one traffic situation at a time. Our visualization approach unifies isochrone maps with time-varying travel data, and instead of showing multiple isolines for different travel times, we show multiple isolines for different times of day in order to reveal time-dependent spatial travel variance. In this paper, we present Isoscope, a web application that provides an interactive map for casual exploration of urban mobility patterns. Through its aesthetic visual form and its simple interface we strive to support people casually investigating travel time in their own city. We will describe our design goals, elaborate on the design and implementation of our prototype, and discuss limitations and future extensions of the system.
+</span>	
+
+<li class="less">
+<a href="http://ahcncompanion.info/abstract/culturegraphy-visualizing-cultural-network-dynamics/">Culturegraphy, Visualizing Cultural Network Dynamics</a><br>
+K Albrecht, M Dörk, B Müller. AHCN 2014.
+<span>
+Presented at Arts, Humanities, and Complex Networks – 4th Leonardo satellite symposium at NetSci2014, June 2014.<br><br>
+Culturegraphy visualizes cultural information exchange over time. Treating cultural works as nodes and influences as directed edges, the visualization of these cultural networks can provide new insights into the rich interconnections of cultural development. The graphics represent complex relationships of movie references by combining macro views summarizing 100 years of movie influences with micro views providing a close-up look at the embedding of individual movies. The macro view shows the rise of the self-referential character of postmodern cinema, while the micro level illustrates differences between individual movies, when they were referenced and by whom. The visualizations provide views that are closer to the real complexity of the relationships than aggregated views or rankings could do.
+</span>
+
+<li class="less">
+<a href="http://tillnagel.com/wp-content/uploads/2014/06/Nagel-Touching-Transport-AVI14.pdf">Touching Transport – A Case Study on Visualizing Metropolitan Public Transit on Interactive Tabletops</a><br>
+T	Nagel, M Maitan, E Duval, A Vande Moere, J Klerkx, K Kloeckl, C Ratti.
+AVI 2014.
+<span>
+Proceedings of the International Working Conference on Advanced Visual Interfaces, ACM, pp. 281-288, May 2014.
+<br><br>
+Due to recent technical developments, urban systems generate large and complex data sets. While visualizations have been used to make these accessible, often they are tailored to one specific group of users, typically the public or expert users. We present Touching Transport, an application that allows a diverse group of users to visually explore public transit data on a multi-touch tabletop. It provides multiple perspectives of the data and consists of three visualization modes conveying tempo-spatial patterns as map, time-series, and arc view. We exhibited our system publicly, and evaluated it in a lab study with three distinct user groups: citizens with knowledge of the local environment, experts in the domain of public transport, and non-experts with neither local nor domain knowledge. Our observations and evaluation results show we achieved our goals of both attracting visitors to explore the data while enabling gathering insights for both citizens and experts. We discuss the design considerations in developing our system, and describe our lessons learned in designing engaging tabletop visualizations.
+</span>
+
+
+
+<li class="less">
+<a href="http://mariandoerk.de/monadicexploration/chi2014.pdf">Monadic Exploration: Seeing the Whole Through Its Parts</a><br>
+M Dörk, R Comber, M Dade-Robertson. CHI 2014.
+<span>
+Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, ACM, pp. 1535–1544, April 2014.	
+<br><br>	
+Monadic exploration is a new approach to interacting with relational information spaces that challenges the distinction between the whole and its parts. Building on the work of sociologists Gabriel Tarde and Bruno Latour we turn to the concept of the monad as a useful lens on online communities and collections that expands the possibility for creating meaning in their navigation. While existing interfaces tend to emphasize either the structure of the whole or details of a part, monadic exploration brings these opposing perspectives closer together in continuous movements between partially overlapping points of view. We present a visualization that reflects a given node's relative position within a network using radial displacements and visual folding. To investigate the potential of monadic exploration we report on an iterative design process of a web-based visualization of a highly cross-referenced book and its six-month deployment.</span>
+
+<li class="less">
+<a href="http://senseable.mit.edu/papers/pdf/201403-Anwar-Traffic-Origins.pdf"> Traffic Origins: A Simple Visualization Technique to Support Traffic Incident Analysis</a><br>
+A Anwan, T Nagel, C Ratti. PacificVis 2014
+<span>
+In Proceedings of the Pacific Visualization Symposium 2014, IEEE, pp. 316 – 319, March 2014.
+<br><br>	
+Traffic incidents such as road accidents and vehicle breakdowns are a major source of travel uncertainty and delay, but the mechanism by which they cause heavy traffic is not fully understood. Traffic management controllers are tasked with routing repair and clean up crews to clear the incident and often have to do so under time pressure and with imperfect information. To aid their decision making and help them understand how past incidents affected traffic, we propose Traffic Origins, a simple method to visualize the impact road incidents have on congestion. Just before a traffic incident occurs, we mark the incident location with an expanding circle to uncover the underlying traffic flow map and when it ends, the circle recedes. This not only directs attention to upcoming events, but also allows us to observe the impact traffic incidents have on vehicle flow in the immediate vicinity and the cascading effect multiple incidents can have on a road network. We illustrate this technique using road incident and traffic flow data from Singapore.
+</span>
+
+<li class="less">
+<a href="http://mariandoerk.de/papers/iconf2014_amber.pdf">Exploring the Promises and Potentials of Visual Archive Interfaces</a><br>
+KL Chen, M Dörk, M Dade-Robertson. iConference 2014.
+
+<span>
+Proceedings of the 2014 iConference, pp. 735-741, March 2014.
+<br><br>	
+A photo archive contains diverse narratives that only get partially exposed in digital interfaces. In this paper we explore a potential framework for archivists and designers to create photo archive interfaces that are sensitive to the ethos and social context of its content. We outline our approach to engaging with archival projects and present the results of a pilot workshop, which raised a range of complex questions about the design of visual interfaces. Our aim is to practically and conceptually expand how a visual interface would let a visitor access, explore, and interpret the contents of an archive. To do this we are interested in the different associations that people weave between the artefacts of an archive.
+</span>
+
+<li class="less">
+<a href="http://mariandoerk.de/papers/iconf2014_spideysense.pdf">Visually Exploring Books Along Their Subject Headings</a><br>
+C Coljee-Gray, M Dörk, S Carpendale. iConference 2014.
+<span>
+Proceedings of the 2014 iConference, pp. 729-734, March 2014.	
+<br><br>
+We present a visualization of subject headings that typically accompany books as flat textual metadata. The purpose of the visualization is twofold: first to expose the implicit structure in subject headings as an overview of a library collection and second to present a visual web of keywords to invite exploration of books. Taking a tag cloud as a starting point, the visualization extends it to a networked tag cloud that respects the hierarchy that is implicit in subject headings. By allowing an information seeker to successively build a subject filter, while seeing the results at each step, we hope to improve the searcher's orientation in a comprehensive book collection
+</span>
+
+</ul>
+
+<h3>2013</h3>
+
+<ul>
+
+<li class="less">
+<a href="http://link.springer.com/chapter/10.1007/978-3-642-15453-9_3">Interaktive Karten und Geovisualisierungen</a><br>
+F Heidmann. Interaktive Infografiken 2013.
+<span>
+In: Weber, W., Burmester, M. & Tille, R. (Eds.): Interaktive Infografiken. Berlin: Springer-Verlag, pp. 39-69.	
+</span>
+	
+<li class="less">	
+<a href="http://tillnagel.com/wp-content/uploads/2010/09/Nagel-Visual-Survey-of-Arc-Diagrams-Errata.pdf"> A Visual Survey of Arc Diagrams</a><br>
+T Nagel, E Duval. Poster at VIS 2013.
+<span>
+Poster Abstracts of IEEE VIS 2013.	
+<br><br>	
+Surveys are a common way of providing an overview over a family
+of visualization techniques. In this poster we focused on arc
+diagrams, which are an established method to visualize relations
+between nodes in a simple path graph, and are laid out in one
+dimension. We collected a wide range of examples of arc diagrams
+with different characteristics. Following Jurgensmann and Schulz’s
+poster on tree visualizations we present our collection as a visual
+survey. As a result, our poster acts as visual reference and as
+inspirational source.
+</span>
+
+<li class="less">
+<a href="http://tillnagel.com/wp-content/uploads/2013/07/Nagel-Unfolding-SouthCHI13-authorsversion.pdf">Unfolding – A Library for Interactive Maps</a><br>
+T Nagel, J Klerkx, A Vande Moere, E Duval. SouthCHI 2013.
+<span>
+SouthCHI 2013: Human Factors in Computing and Informatics, LNCS, volume 7946, pp. 497-513, 
+	Springer,  July 2013. <em>Best Presentation Award</em>.
+<br><br>	
+Visualizing data with geo-spatial properties has become more important and prevalent due to the wide spread dissemination of devices, sensors, databases, and services with references to the physical world. Yet, with existing tools it is often difficult to create interactive geovisualizations tailored for a particular domain or a specific dataset. We present Unfolding, a library for interactive maps and data visualization. Unfolding provides an API for designers to quickly create and customize geo-visualizations. In this paper, we describe the design criteria, the development process, and the functionalities of Unfolding. We demonstrate its versatility in use through a collection of examples. Results from a user survey suggests programmers find the library easy to learn and to use.
+</span>
+
+<li class="less">
+<a href="http://mariandoerk.de/papers/cc2013.pdf">Indexicality and Visualization: Exploring Analogies with Art, Cinema and Photography</a><br>
+T Schofield, M Dörk, M Dade-Robertson. C&amp;C 2013.
+<span>
+Proceedings of the Conference on Creativity and Cognition, ACM, pp. 175-184, June 2013.
+<br><br>	
+In this paper we offer a critical discussion of data visualization by adapting theories of indexicality as discussed in semiotics and art history. An indexical statement is broadly one whose meaning is dependent on context. We examine how indexicality has informed practices in cinema, photography, and contemporary art and make comparisons with data visualization. Specifically, we explore how these analogies can result in generative concepts that can inform the design and study of data visualization.
+</span>
+
+<li class="less">
+<a href="http://mariandoerk.de/criticalinfovis/altchi2013.pdf">Critical InfoVis: Exploring the Politics of Visualization</a><br>
+M Dörk, P Feng, C Collins, S Carpendale. alt.chi 2013.
+<span>
+Extended Abstracts of the SIGCHI Conference on Human Factors in Computing Systems, ACM, pp. 2189-2198, May 2013
+<br><br>	
+As information visualization is increasingly used to raise awareness about social issues, difficult questions arise about the power of visualization. So far the research community has not given sufficient thought to how values and assumptions pervade information visualization. Taking engaging visualizations as a starting point, we outline a critical approach that promotes disclosure, plurality, contingency, and empowerment. Based on this approach, we pose some challenges and opportunities for visualization researchers and practitioners.
+</span>
+
+<li class="less">
+<a href="http://mariandoerk.de/accentuation/chi2013.pdf">Accentuating Visualization Parameters to Guide Exploration</a> <br>
+M Dörk, H Lam, O Benjelloun. Work-in-Progress at CHI 2013.
+<span>
+	Extended Abstracts of the SIGCHI Conference on Human Factors in Computing Systems, ACM, pp. 1755-1760, May 2013.	
+<br><br>	
+We present a new method for displaying visualization parameters to guide casual data exploration. When visualizing datasets with large parameter spaces it can be difficult to move between data views. Building on social navigation and degree-of-interest visualization, we propose the concept of accentuation as the selection and emphasis of visualization parameters based on social and semantic signals. We describe how we designed an accentuated visualization interface, and discuss open challenges and directions for future research.
+</span>
+
+<li class="less">
+<a href="http://tillnagel.com/wp-content/uploads/2013/03/Nagel-Unfolding-GeoViz13-final.pdf">Unfolding – A Simple Library for Interactive Maps and Geovisualizations in Processing</a><br>
+T Nagel, F Heidmann, E Duval, J Klerkx, A Vande Moere. GeoViz 2013.
+<span>
+GeoViz 2013, March 6-8, Hamburg, Germany.
+<br><br>	
+Many thematic maps and geovisualizations nowadays are being created by designers, journalists, and other non 
+cartographers. Yet, with existing tools it is often difficult to create interactive data visualizations tailored for a particular domain or a 
+specific dataset. We present Unfolding, a library to simplify the creation of interactive maps and geovisualizations. Unfolding 
+provides an API to quickly create and customize visualization applications. In this paper, we introduce the design and functionality 
+of our library. We demonstrate its usability through a collection of examples, and confirm the apparent need of such map library by 
+describing its acceptance in the community. 
+</span>
+
+</ul>
+
+
+<h3>2012</h3>
+
+<ul>
+
+<li class="less">
+<a href="http://tillnagel.com/wp-content/uploads/2012/06/Nagel-SankeyArcs-EuroVis11.pdf">Sankey Arcs – Visualizing edge weights in path graphs</a> <br>
+T Nagel, E Duval, A Vande Moere, K Kloeckl, C Ratti. Eurovis 2012.	
+<span>
+Eurovis 2012, Vienna, Austria, 5-8 June 2012, Eurovis 2012, pp. 55-59, Eurographics Association.
+<br><br>
+Arc diagrams allow exploring relations and their strength between sequential nodes. Previous solutions suffer from displaying all arcs at the center of a node, which can lead to visual obstruction. We present a new technique, which extends the arc diagram technique by laying out the weighted edges of a node adjacent to each other. The aim of our Sankey Arc technique is to improve clarity, to enable users perceiving and comparing weighted edges 
+in path graphs. The technique is illustrated using a dataset on travel paths in a public transit network.
+</span>
+
+<li class="less">
+<a href="http://tillnagel.com/wp-content/uploads/2012/05/Nagel-Interactive-Exploration-of-Geospatial-Network-Visualization-final.pdf">Interactive Exploration of a Geospatial Network Visualization</a> <br>
+T Nagel, E Duval, A Vande Moere. CHI 2012.
+<span>
+Extended Abstracts of CHI 2012 the SIGCHI Conference on Human Factors in Computing Systems, ACM, pp. 557-572.
+<br><br>
+This paper presents a tabletop visualization of relations between geo-positioned locations. We developed an interactive visualization, which enables users to visually explore a geospatial network of actors. The multitouch tabletop, and the large size of the interactive surface invite users to explore the visualization in semi-public spaces.
+For a case study on scientific collaborations between institutions, we applied and improved several existing techniques for a walk-up-and-use system aimed at scientists for a social setting at a conference. We describe our iterative design approach, our two implemented prototypes, and the lessons learnt from their creation. We conducted user evaluation studies at the two on-location demonstrations, which provide evidence of the prototype usability and usefulness, and its support for understanding the distribution and connectivity in a geospatial network.
+</span>
+
+<li class="less">
+<a href="https://lirias.kuleuven.be/bitstream/123456789/344525/1/eist2012_submission_6-2.pdf">Learning dashboards &amp; learnscapes</a> <br>
+E Duval, J Klerkx, K Verbert, T Nagel, S Govaerts, G Parra, JL Santos, B Vandeputte. EIST 2012.
+<span>
+Educational Interfaces, Software, and Technology Workshop at ACM CHI 2012.
+<br><br>
+In this paper, we briefly present our work on applications for ‘learning analytics’. Our work ranges from dashboards on small mobile devices to learnscapes on large public displays. We capture and visualize traces of learning activities, in order to promote self-awareness and reflection, and to enable learners to define goals and track progress towards these goals. We identify HCI issues for this kind of applications.
+</span>
+
+<li class="less">
+<a href="http://mariandoerk.de/pivotpaths/infovis2012.pdf">PivotPaths: Strolling through Faceted Information Spaces</a> <br>
+M Dörk, N Henry Riche, G Ramos, S Dumais. InfoVis 2012.
+<span>
+TVCG: IEEE Transactions on Visualization and Computer Graphics (Proceedings InfoVis 2012). 18(12), pages 2709-2718, Dec 2012.
+<br><br>
+We present PivotPaths, an interactive visualization for exploring faceted information resources. During both work and leisure, we increasingly interact with information spaces that contain multiple facets and relations, such as authors, keywords, and citations of academic publications, or actors and genres of movies. To navigate these interlinked resources today, one typically selects items from facet lists resulting in abrupt changes from one subset of data to another. While filtering is useful to retrieve results matching specific criteria, it can be difficult to see how facets and items relate and to comprehend the effect of filter operations. In contrast, the PivotPaths interface exposes faceted relations as visual paths in arrangements that invite the viewer to `take a stroll' through an information space. PivotPaths supports pivot operations as lightweight interaction techniques that trigger gradual transitions between views. We designed the interface to allow for casual traversal of large collections in an aesthetically pleasing manner that encourages exploration and serendipitous discoveries. This paper shares the findings from our iterative design-and-evaluation process that included semi-structured interviews and a two-week deployment of PivotPaths applied to a large database of academic publications.
+</span>
+
+<li class="less">
+<a href="http://mariandoerk.de/visgets/tweb2012.pdf">Navigating Tomorrow’s Web: From Searching and Browsing to Visual Exploration</a> <br>
+M Dörk, C Williamson, S Carpendale. TWEB.
+<span>
+ACM Transactions on the Web. 6(3), Article No. 13, 28 pages, Sep 2012.
+<br><br>
+We propose a new way of navigating the Web using interactive information visualizations, and present encouraging results from a large-scale Web study of a visual exploration system. While the Web has become an immense, diverse information space, it has also evolved into a powerful software platform. We believe that the established interaction techniques of searching and browsing do not sufficiently utilize these advances, since information seekers have to transform their information needs into specific, text-based search queries resulting in mostly text-based lists of resources. In contrast, we foresee a new type of information seeking that is high-level and more engaging, by providing the information seeker with interactive visualizations that give graphical overviews and enable query formulation. Building on recent work on faceted navigation, information visualization, and exploratory search, we conceptualize this type of information navigation as visual exploration and evaluate a prototype Web-based system that implements it. We discuss the results of a large-scale, mixed-method Web study that provides a better understanding of the potential benefits of visual exploration on the Web, and its particular performance challenges.
+</span>
+
+<li class="less">
+<a href="http://mariandoerk.de/fluidviews/avi2012.pdf"> Fluid Views: A Zoomable Search Environment</a> <br>
+M Dörk, S Carpendale, C Williamson. AVI 2012.
+<span>
+Proceedings of the International Conference on Advanced Visual Interfaces, ACM, pp. 233-240.	
+<br><br>
+We present Fluid Views, a web-based search environment designed to bridge overview and detail by integrating dynamic queries, semantic zooming, and dual layers. The most common form of search results is long ranked and paginated lists, which are seldom examined beyond the top ten items. To support more exploratory forms of information seeking, we bring together the notion of relevance with the power of visual encoding. In Fluid Views, results portray relevance via size and detail in a dynamic top layer and semantic similarity via position on a base map. We designed Fluid Views with temporal, spatial, and content-defined base maps for both textual and visual resources, and tested our prototype system on books, blogs, and photos. Interviews with library professionals indicate the potential of Fluid Views for exploring collections and exciting directions for future research.
+</span>
+
+<li class="less">
+<a href="http://mariandoerk.de/edgemaps/ivj2012.pdf">Visualizing Explicit and Implicit Relations of Complex Information Spaces</a> <br>
+M Dörk, S Carpendale, C Williamson. Information Visualization journal.
+<span>
+Information Visualization, Sage, 11(1), pp. 5-21, Jan 2012.
+<br><br>
+In this work, we describe how EdgeMaps provide a new method for integrating the visualization of explicit and implicit data relations. Explicit relations are specific connections between entities already present in a given data set, while implicit relations are derived from multidimensional data based on similarity measures. Many data sets include both types of relations, which are often difficult to represent together in information visualizations. Node-link diagrams typically focus on explicit data connections while not incorporating implicit similarities between entities. Multidimensional scaling considers similarities between items; however, explicit links between nodes are not displayed. In contrast, EdgeMaps visualize both explicit and implicit relations by combining graph drawing and spatiatization techniques. We have applied this technique to three case studies [philosophers, painters, and musicians] and explored how integrated visualizations of explicit and implicit relations reveal novel patterns and relationships.
+</span>
+
+</ul>
+
+</div>
+
+</div>
+
+</body>
+</html>
